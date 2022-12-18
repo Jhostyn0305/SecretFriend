@@ -1,0 +1,85 @@
+TUTORIAL NODE JS CRUD
+
+Creación del proyecto:
+
+#Partimos creando una carpeta donde deseamos alojar nuestro proyecto.
+#Una vez teniendo la carpeta nos dirigimos a VSC, para abrir el directorio
+#y también una terminal en esa dirección.
+#Para iniciar el proyecto partimos ejecutando en la terminal el siguiente comando:
+ *npm init -y
+!Es recomendable antes de aplicar los comandos revisar las versiones en que se están trabajad
+#Una vez teniendo las primeras configuraciones, partimos instalando las dependencias
+#de igual forma en la misma terminal 
+!En este caso usaremos: EXPRESS EJS POSTGRES y NODEMON
+ *npm install express ejs postgres nodemon
+!ejs es un motor de plantillas visuales, tipo html.
+
+Configuración del proyecto:
+
+#Creamos un archivo en la raíz, este archivo se llamará por conveniencia:
+*app.js
+#Una vez creado el archivo nos dirijimos a configurarlo dentro de package.json
+#Por defecto en el atributo main, el cual generalmente se ubica en la línea 5 o 6 
+#viene con index.js y lo cambiamos a app.js
+!ejem: "main":"index.js", -> "main":"app.js"
+
+
+Configuración del servidor NODE:
+
+#Nos dirigimos al archivo app.js y comenzamos exportando express
+*EJEMPLO DE EXPORTACIóN PARA COPIAR PEGAR*
+const express = require('express');
+const app= express();
+
+app.listen(5000,()=>{
+console.log('SERVER corriendo en http://localhost:5000');
+});
+*FIN EJEMPLO DE EXPORTACIóN PARA COPIAR PEGAR*
+!Para correr la aplicación de una forma simple usamos el siguiente comando en la terminal:
+*node app
+!Para mantenerle corriendo la app constantemente se puede usar:
+*nodemon app
+!Como recién está creada la app se mostrará un mensaje "Cannot GET /"
+!Como planeamos que nuestro aplicativo node únicamente sea back, no haremos uso directamente 
+! de ejs.
+
+
+Configuración de la base de datos POSTGRES:
+
+
+#Creamos una carpeta database y dentro de la misma un archivo llamado:
+*db.js
+#Una vez teniendo el archivo comenzamos a establecer la conexión
+!Para mayor entendimiento se puede apreciar la documentación:
+!https://expressjs.com/en/guide/database-integration.html#postgresql
+*EJEMPLO DE CONEXIóN PARA COPIAR PEGAR*
+const initOptions = {};
+
+const pgp = require('pg-promise')([initOptions]);
+
+const db = pgp('postgres://postgres:2280998jG@localhost:5432/SecretFriend');
+
+module.exports = db;
+*FIN EJEMPLO DE CONEXIóN PARA COPIAR PEGAR*
+*Una vez hecha la conexión unicamente lo que prosigue es hacer los controladores
+
+Creamos los contraladores:
+
+
+#Creamos una carpeta llamada controllers y dentro de la misma los controladores necesarios:
+*EJEMPLOS DE CONTROLADORES PARA ESTA APP*
+  user.js
+  friend.js
+*FIN EJEMPLOS DE CONTROLADORES PARA ESTA APP*
+
+
+Creamos las rutas:
+
+
+#Creamos una archivo llamado:
+*router.js
+!En este vamos a manejar nuestros endpoints
+*EJEMPLOS DE CONTROLADORES PARA ESTA APP*
+  user.js
+  friend.js
+*FIN EJEMPLOS DE CONTROLADORES PARA ESTA APP* 
